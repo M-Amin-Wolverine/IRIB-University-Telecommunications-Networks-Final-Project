@@ -461,19 +461,21 @@ This section describes the core technical implementation of the **Dual-Platform 
            self.gateway_macs = {10: "00:00:5e:00:01:0a", 20: "00:00:5e:00:01:14"}
    ```
    <img width="1200" height="702" alt="image" src="https://github.com/user-attachments/assets/230fa256-68eb-48d1-8d7c-8ce01b8bb2cc" />
-   ### A Flow-Based Performance Evaluation on RYU SDN Controller | Journal of The  Institution of Engineers (India): Series B | Springer Nature Link
-   ### Ryu controller architecture: layered design with event dispatcher, OpenFlow parser, built-in apps, and custom SDN applications.
+   A Flow-Based Performance Evaluation on RYU SDN Controller | Journal of The  Institution of Engineers (India): Series B | Springer Nature Link
+   Ryu controller architecture: layered design with event dispatcher, OpenFlow parser, built-in apps, and custom SDN applications.
 
-   2. **Multi-VLAN Switching**
+2. **Multi-VLAN Switching**
       - 802.1Q VLAN tagging/untagging handled on access ports
       - Trunk ports configured with allowed VLAN lists (via OpenFlow actions: set_field vlan_vid)
       - Native VLAN support for untagged ingress/egress traffic
       - Inter-VLAN routing fully mediated by the controller (no distributed routing protocol)
-   <div style="display: flex; gap: 10px;">
+        
+<div style="display: flex; gap: 10px;">
     <img src="https://github.com/user-attachments/assets/705136ae-f618-4c39-9b32-4e790878f1e9" width="475" />
     <img src="https://github.com/user-attachments/assets/01f024f2-d5e0-4ab6-b2df-71524bf3b57f" width="475" />
-   </div>
-   ### Typical inter-VLAN routing setups — left: router-on-a-stick style; right: multi-switch topology with VLAN separation, analogous to SDN controller-mediated routing.
+</div>
+   Typical inter-VLAN routing setups — left: router-on-a-stick style; right: multi-switch topology with VLAN separation, analogous to SDN controller-mediated routing.
+   
 
    
 
