@@ -431,3 +431,47 @@ IP Address: `192.168.x.x`
 - Assigned via DHCP from hotspot  
 
 ---
+## ⚙️ Implementation Details
+
+This section describes the core technical implementation of the **Dual-Platform Hybrid SDN Architecture with Inter-VLAN Routing**, built using **Mininet** for topology emulation and **Ryu** as the programmable SDN controller (OpenFlow 1.3). The design centralizes intelligence in the controller for ARP proxying, inter-VLAN routing, gateway emulation, and flow management while keeping switches lightweight.
+
+### Core Components
+
+1. **SDN Controller (Ryu)**  
+   The Ryu application implements a hybrid L2/L3 switch behavior with MAC learning, ARP proxying, and virtual gateway support.
+
+   ```python
+   # Core controller implementation with OpenFlow 1.3
+   from collections import defaultdict
+   from ryu.base import app_manager
+   from ryu.ofproto import ofproto_v1_3
+   from ryu.lib.packet import packet, ethernet, arp, ipv4, icmp
+
+   class HybridSDNSwitch(app_manager.RyuApp):
+       OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
+       
+       def __init__(self, *args, **kwargs):
+           super().__init__(*args, **kwargs)
+           # MAC learning table: datapath_id → {mac: port}
+           self.mac_table = defaultdict(dict)
+           # ARP table for IP-to-MAC mapping
+           self.arp_table = defaultdict(dict)
+           # Gateway configuration (virtual router IPs/MACs per VLAN)
+           self.gateway_ips = {10: "10.0.10.254", 20: "10.0.20.254"}
+           self.gateway_macs = {10: "00:00:5e:00:01:0a", 20: "00:00:5e:00:01:14"}
+   ```
+   <img width="1200" height="702" alt="image" src="https://github.com/user-attachments/assets/230fa256-68eb-48d1-8d7c-8ce01b8bb2cc" />
+   #### A Flow-Based Performance Evaluation on RYU SDN Controller | Journal of The  Institution of Engineers (India): Series B | Springer Nature Link
+   ##### Ryu controller architecture: layered design with event dispatcher, OpenFlow parser, built-in apps, and custom SDN applications.
+
+   2. **Multi-VLAN Switching**
+      - 802.1Q VLAN tagging/untagging handled on access ports
+      - Trunk ports configured with allowed VLAN lists (via OpenFlow actions: set_field vlan_vid)
+      - Native VLAN support for untagged ingress/egress traffic
+      - Inter-VLAN routing fully mediated by the controller (no distributed routing protocol)
+   <img width="975" height="521" alt="image" src="https://github.com/user-attachments/assets/705136ae-f618-4c39-9b32-4e790878f1e9" />
+   <img width="686" height="481" alt="image" src="https://github.com/user-attachments/assets/01f024f2-d5e0-4ab6-b2df-71524bf3b57f" />
+   ##### Typical inter-VLAN routing setups — left: router-on-a-stick style; right: multi-switch topology with VLAN separation, analogous to SDN controller-mediated routing.
+
+   
+
