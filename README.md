@@ -511,8 +511,8 @@ def _proxy_arp(self, dp, arp_pkt, in_port, vlan_id, msg):
   - Flow statistics collection for performance monitoring (via FlowStats request/reply)
   - 
 <div style="display: flex; gap: 10px;">
-    <img width="794" height="485" alt="image" src="https://github.com/user-attachments/assets/d2f1ef64-5f0c-4d7d-bc45-938b810fd30a" />
-    <img width="700" height="485" alt="image" src="https://github.com/user-attachments/assets/d0e92738-ffe6-43ae-96d7-6e5d9721a762" />
+    <img src="https://github.com/user-attachments/assets/d2f1ef64-5f0c-4d7d-bc45-938b810fd30a" width="747" />
+    <img src="https://github.com/user-attachments/assets/d0e92738-ffe6-43ae-96d7-6e5d9721a762" width="747" />
 </div>
    
 
