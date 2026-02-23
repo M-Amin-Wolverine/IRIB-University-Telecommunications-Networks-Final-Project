@@ -89,7 +89,7 @@ This architecture demonstrates:
 
 ---
 # Network Topology
-
+```
 Windows Host (192.168.x.x)
 │
 ├── Ryu SDN Controller
@@ -116,7 +116,7 @@ Windows Host (192.168.x.x)
 │                                       │
 │  Hosts + Gateways per VLAN           │
 └───────────────────────────────────────┘
-
+```
 ---
 ## Network Paths
 
