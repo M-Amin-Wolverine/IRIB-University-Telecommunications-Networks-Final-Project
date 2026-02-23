@@ -11,6 +11,9 @@
 ![DOI](https://img.shields.io/badge/DOI-10.1234%2Firibu.2026.7.2-blueviolet)
 
 ---
+<img width="784" height="1168" alt="image" src="https://github.com/user-attachments/assets/87f13b2a-29d1-4325-848d-1a5e9770d713" />
+
+---
 ## Overview
 SDN Framework is a comprehensive, high-fidelity simulation platform for Software-Defined Networking (SDN) architectures, providing a unified environment for OpenFlow-based network analysis and experimentation. The simulator accurately models multi-VLAN switching, hybrid routing paradigms, and centralized control plane operations in complex campus, data center, and service provider topologies.
 
