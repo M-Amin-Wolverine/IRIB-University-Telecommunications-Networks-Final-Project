@@ -11,6 +11,56 @@
 ![DOI](https://img.shields.io/badge/DOI-10.1234%2Firibu.2026.7.2-blueviolet)
 
 ---
+## Overview
+SDN Framework is a comprehensive, high-fidelity simulation platform for Software-Defined Networking (SDN) architectures, providing a unified environment for OpenFlow-based network analysis and experimentation. The simulator accurately models multi-VLAN switching, hybrid routing paradigms, and centralized control plane operations in complex campus, data center, and service provider topologies.
+
+By integrating Mininet's lightweight virtualization with Ryu's production-grade SDN controller framework, SDN Framework enables end-to-end evaluation of programmable network infrastructures, including dynamic flow management, reactive routing, and controller-switch interactions. Its architecture supports scalable topology generation, reproducible performance assessment, and high-fidelity emulation of real-world network behaviors, allowing researchers and students to study SDN control plane logic under realistic traffic patterns, failure scenarios, and policy constraints.
+
+Designed as an educational and research development platform, SDN Framework facilitates the analysis of network virtualization, traffic engineering strategies, intent-based networking paradigms, and next-generation programmable network systems, bridging the critical gap between theoretical SDN concepts and practical implementation in modern telecommunications infrastructures.
+
+---
+## Features
+### Comprehensive SDN/OpenFlow Support
+Enables simulation of a wide variety of SDN-enabled network scenarios, including OpenFlow 1.3 protocol implementation, reactive and proactive flow programming, and multi-controller architectures. Supports hybrid deployments combining legacy L2/L3 switching with programmable forwarding, providing a versatile platform for both academic instruction and practical network engineering evaluation.
+
+### Multi-VLAN Switching with Inter-VLAN Routing
+Accurately models 802.1Q VLAN tagging, trunk/access port configurations, and Layer 3 routing between isolated broadcast domains. Supports advanced VLAN features including native VLAN handling, QinQ encapsulation, and dynamic VLAN assignment through centralized control plane logic.
+
+### Advanced ARP Proxy and Spoofing Defense
+Implements sophisticated ARP handling mechanisms including gateway proxy ARP, cross-VLAN ARP mediation, and ARP spoofing prevention through dynamic binding validation. Ensures network security while maintaining seamless end-to-end connectivity across segmented network domains.
+
+### ICMP and Control Protocol Handling
+Comprehensive support for ICMP echo request/reply, TTL expiration handling, and path MTU discovery. Enables detailed analysis of control plane behavior under various network conditions, including failure scenarios and performance degradation events.
+
+### Dynamic MAC Learning with Aging
+Implements transparent bridging with autonomous MAC address learning, aging mechanisms, and forwarding table optimization. Supports configurable aging timers, MAC table size limits, and seamless integration with control plane for flow optimization.
+
+### Hybrid Routing Architecture
+Uniquely combines traditional L2 switching with SDN-controlled L3 routing, enabling sophisticated traffic engineering strategies including policy-based forwarding, load balancing across multiple paths, and dynamic rerouting under failure conditions.
+
+### Realistic Topology Emulation
+Seamlessly integrates with Mininet's topology generation engine for creating complex multi-switch, multi-host network scenarios. Supports custom topologies including leaf-spine architectures, hierarchical designs, and ISP-like network structures with configurable link parameters (bandwidth, delay, loss).
+
+### Performance Metrics Collection
+Calculates and monitors key networking performance indicators including throughput, latency, jitter, packet loss ratios, and flow completion times. Provides comprehensive insights into network behavior under diverse traffic patterns and control strategies.
+
+### Flow Table Management
+Advanced flow table simulation with support for multiple flow priorities, idle/hard timeouts, and flow statistics collection. Enables detailed analysis of flow table utilization, installation rates, and optimization strategies.
+
+### Controller-Switch Interaction Analysis
+Captures and analyzes OpenFlow protocol exchanges including PacketIn/FlowMod messages, port status updates, and asynchronous event handling. Provides deep visibility into control plane decision-making processes.
+
+### Educational Laboratory Environment
+Specifically designed for telecommunications engineering education, providing reproducible laboratory exercises covering SDN fundamentals, OpenFlow protocol analysis, network virtualization, and advanced routing concepts.
+
+### Scalable and Extensible Architecture
+Built with modular design principles enabling easy extension with new protocols, forwarding behaviors, and analysis modules. Supports integration with external traffic generators, monitoring tools, and data analytics pipelines.
+
+### Data Export and Visualization
+Generates detailed logs, packet captures, and performance statistics compatible with Wireshark, matplotlib, and external analysis pipelines. Enables post-experiment analysis and visualization of network behavior.
+
+
+---
 ## 📋 Project Overview
 
 This project implements a **Hybrid Software-Defined Networking (SDN) simulation** using a **dual-platform architecture**.
