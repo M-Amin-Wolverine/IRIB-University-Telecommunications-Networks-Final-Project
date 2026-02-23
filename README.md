@@ -471,8 +471,8 @@ This section describes the core technical implementation of the **Dual-Platform 
       - Inter-VLAN routing fully mediated by the controller (no distributed routing protocol)
         
 <div style="display: flex; gap: 10px;">
-    <img src="https://github.com/user-attachments/assets/705136ae-f618-4c39-9b32-4e790878f1e9" width="475" />
-    <img src="https://github.com/user-attachments/assets/01f024f2-d5e0-4ab6-b2df-71524bf3b57f" width="475" />
+    <img src="https://github.com/user-attachments/assets/705136ae-f618-4c39-9b32-4e790878f1e9" width="475" height="490" />
+    <img src="https://github.com/user-attachments/assets/01f024f2-d5e0-4ab6-b2df-71524bf3b57f" width="475" height="490" />
 </div>
    Typical inter-VLAN routing setups — left: router-on-a-stick style; right: multi-switch topology with VLAN separation, analogous to SDN controller-mediated routing.
    
