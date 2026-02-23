@@ -89,48 +89,33 @@ This architecture demonstrates:
 
 ---
 # Network Topology
-
 Windows Host (192.168.x.x)
-└── Ryu SDN Controller
-└── OpenFlow 1.3 Control Plane
-└── Port: 6633/TCP
 │
-└─ OpenFlow Protocol ───────────────────────────────┐
-(via WiFi / Bridge Network)
-│
-┌────────────────┴────────────────┐
-│   VMware Ubuntu VM (Mininet)     │
-│          Data Plane              │
-│                                  │
-│      ┌─────────────────┐         │
-│      │      Core       │         │
-│      │       s2        │         │
-│      │     (Trunk)     │         │
-│      └────────┬────────┘         │
-│               │                  │
-│      ┌────────┼──────────┐       │
-│      │        │          │       │
-┌───────────────────────┐          │ ┌──────┴──────┐ ┌──────┴──────┐   │
-│        s1             │          │ │     s1      │ │     s3      │   │
-│     (Access)          │◄─────────┼─│   (Access)  │ │   (Access)  │   │
-│      VLAN 10          │   Path 1  │ └──────┬──────┘ └──────┬──────┘   │
-└─────────┬─────────────┘  s1-s2-s3 │        │                 │       │
-│                          │        ▼                 ▼       │
-│                 Path 2  │   ┌─────────────┐   ┌─────────────┐
-│                  s1-s3  │   │    h1 h2    │   │    h3 h4    │
-│                          │   │  VLAN 10    │   │  VLAN 20    │
-▼                          │   │10.10.10.1   │   │10.20.20.1   │
-┌─────────────────┐                 │   │10.10.10.2   │   │10.20.20.2   │
-│      r1         │                 │   └─────────────┘   └─────────────┘
-│    Gateway      │                 │          ▲                   ▲
-│    VLAN 10      │                 │          │                   │
-│   10.10.10.254  │                 │   ┌─────────────┐   ┌─────────────┐
-└─────────────────┘                 │   │     r1      │   │     r2      │
-│   │  Gateway    │   │  Gateway    │
-│   │  VLAN 10    │   │  VLAN 20    │
-│   │ 10.10.10.254│   │ 10.20.20.254│
-│   └─────────────┘   └─────────────┘
-└───────────────────────────────────┘
+├── Ryu SDN Controller
+├── OpenFlow 1.3 (Control Plane)
+└── TCP 6633
+        │
+        │  OpenFlow Protocol
+        │  (WiFi / Bridged Network)
+        ▼
+┌───────────────────────────────────────┐
+│ VMware Ubuntu VM (Mininet)           │
+│              Data Plane               │
+│                                       │
+│                Core Switch            │
+│                   s2 (Trunk)          │
+│                     │                 │
+│      ┌──────────────┼──────────────┐  │
+│      │              │              │  │
+│   s1 (Access)    s1 (Access)    s3 (Access)
+│   VLAN 10        VLAN 10        VLAN 20
+│                                       │
+│  Path 1: s1 → s2 → s3                │
+│  Path 2: s1 → s3                     │
+│                                       │
+│  Hosts + Gateways per VLAN           │
+└───────────────────────────────────────┘
+
 ---
 ## Network Paths
 
