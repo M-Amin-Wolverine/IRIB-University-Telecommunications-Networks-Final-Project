@@ -1,11 +1,16 @@
 # 🛡️ MIT License
 
-**Project:** Dual-Platform Hybrid SDN Architecture with Inter-VLAN Routing  
-**Simulation Framework:** Mininet + Ryu Controller Environment  
-**Context:** Telecommunications Networks Final Project – RIB University  
-**Copyright © 2024–2026** gustavomoers & M-Amin-Khodadadi
-Dual-origin intellectual property — jointly contributed and protected under shared authorship protocol.
+**Project:** Dual-Platform Hybrid SDN Architecture with Inter-VLAN Routing 
 
+**Simulation Framework:** Mininet + Ryu Controller Environment  
+
+**Context:** Telecommunications Networks Final Project – RIB University  
+
+**Copyright © 2024–2026** gustavomoers & M-Amin-Khodadadi
+```
+Dual-origin intellectual property — jointly contributed and protected under shared authorship protocol.
+```
+---
 This work is released under the **MIT License** (a permissive open-source license), augmented with academic-oriented guidelines to encourage responsible use, proper attribution, and continuation of the knowledge chain in software-defined networking research and education.
 
 ### 📜 I. GRANT OF UNIVERSAL PERMISSIONS (Core MIT Permissions)
@@ -24,7 +29,7 @@ All persons and entities — whether for academic research, education, personal 
 Every copy, substantial portion, or derivative work **must** retain:
 
 - The original copyright notice:  
-  `Copyright © 2024–2026 gustavomoers & M-Amin-Wolverine`
+  `Copyright © 2024–2026 gustavomoers & M-Amin-Khodadadi`
 - This full license text (or at minimum the standard MIT permission paragraph below)
 - Clear acknowledgment of the dual authorship and RIB University project origin
 
