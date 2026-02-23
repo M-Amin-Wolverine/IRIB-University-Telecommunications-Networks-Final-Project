@@ -475,7 +475,44 @@ This section describes the core technical implementation of the **Dual-Platform 
     <img src="https://github.com/user-attachments/assets/01f024f2-d5e0-4ab6-b2df-71524bf3b57f" width="475" height="490" />
 </div>
    Typical inter-VLAN routing setups — left: router-on-a-stick style; right: multi-switch topology with VLAN separation, analogous to SDN controller-mediated routing.
-   
 
+3. **ARP Proxy Implementation**
+The controller acts as ARP proxy for gateways and cross-VLAN communication, preventing broadcast storms and enabling routing without real L3 devices.
+
+```Python
+def _proxy_arp(self, dp, arp_pkt, in_port, vlan_id, msg):
+    """Proxy ARP for gateway and cross-VLAN communication"""
+    target_ip = arp_pkt.dst_ip
+    
+    # Gateway proxy (same VLAN gateway request)
+    if target_ip == self.gateway_ips.get(vlan_id):
+        self._send_arp_reply(dp, arp_pkt, self.gateway_macs[vlan_id], in_port, msg)
+        return True
+    
+    # Cross-VLAN proxy (request for remote VLAN gateway)
+    for dst_vlan, gw_ip in self.gateway_ips.items():
+        if target_ip == gw_ip and dst_vlan != vlan_id:
+            self._send_arp_reply(dp, arp_pkt, self.gateway_macs[dst_vlan], in_port, msg)
+            return True
+    
+    return False
+```
+### ARP proxy logic reduces unnecessary flooding and centralizes address resolution.
+
+4. **ICMP Handling**
+  - Echo request/reply generation for virtual gateway testing
+  - ICMP time-exceeded messages for traceroute/TTL debugging
+  - Basic support for path MTU discovery (via fragmentation flags)
+
+5. **Flow Table Management**
+  - Priority-based rules (higher priority for control traffic, ARP/ICMP)
+  - Idle/hard timeouts to manage flow table space
+  - Reactive (on-demand Packet-In → Flow-Mod) vs. proactive (pre-installed L2/L3 rules) programming
+  - Flow statistics collection for performance monitoring (via FlowStats request/reply)
+  - 
+<div style="display: flex; gap: 10px;">
+    <img width="794" height="485" alt="image" src="https://github.com/user-attachments/assets/d2f1ef64-5f0c-4d7d-bc45-938b810fd30a" />
+    <img width="700" height="485" alt="image" src="https://github.com/user-attachments/assets/d0e92738-ffe6-43ae-96d7-6e5d9721a762" />
+</div>
    
 
