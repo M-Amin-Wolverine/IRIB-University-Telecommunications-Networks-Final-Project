@@ -516,85 +516,213 @@ def _proxy_arp(self, dp, arp_pkt, in_port, vlan_id, msg):
 </div>
 OpenFlow packet processing pipeline — table-miss triggers Packet-In to controller, which installs Flow-Mod rules.   
 ---
+## 📚 Documentation
+### Available Resources 
+- 📘 Project Report: Comprehensive documentation of design decisions and implementation
 
-## Quick Start
+- 📊 Network Diagrams: Visual representations of topologies and data flows
 
-```bash
-# Install Mininet (Ubuntu/Debian recommended)
-sudo apt update
-sudo apt install mininet
+- 🎯 Test Cases: Verification and validation procedures
 
-# Install Ryu SDN controller
-pip3 install ryu
+- 📈 Performance Analysis: Throughput and latency measurements
+---
+##🔧 Implementation Details
 
-# Additional tools for visualization & analysis
-pip3 install matplotlib numpy seaborn
+### Technology Stack
+
+| Component          | Technology          | Version     | Purpose                              |
+|--------------------|---------------------|-------------|--------------------------------------|
+| Emulation          | Mininet             | 2.3.0       | Network topology emulation & simulation |
+| SDN Controller     | Ryu                 | 4.34        | OpenFlow-based control plane         |
+| Southbound Protocol| OpenFlow            | 1.3         | Switch ↔ Controller communication    |
+| Programming Language | Python           | 3.8+        | Controller logic & scripting         |
+| Virtualization     | Linux Namespaces    | —           | Lightweight network namespace isolation |
+| Version Control    | Git                 | —           | Source code versioning & collaboration |
+| Testing / Validation | iperf3, ping, tcpdump | —       | Performance & traffic analysis       |
+
+### Key Implementation Components
+
+#### 1. Custom Ryu Controller
+
+A modular, event-driven Ryu application that implements advanced VLAN-aware switching and inter-VLAN routing.
+
+**Main modules:**
+
+- **VLAN Management**  
+  - Dynamic VLAN creation / assignment  
+  - VLAN ID conflict detection  
+  - VLAN membership tracking per port
+
+- **Flow Table Manager**  
+  - Priority-based flow entry installation  
+  - Flow entry timeout & statistics collection  
+  - Flow mod conflict resolution
+
+- **Topology Discovery**  
+  - LLDP-based link discovery  
+  - Switch & host location tracking  
+  - Real-time topology graph updates
+
+- **Packet Handling (Packet-In processing)**  
+  - ARP handling & proxy ARP support  
+  - DHCP relay/forwarding (optional)  
+  - Unknown unicast / broadcast flooding control  
+  - IPv4/IPv6 packet classification
+
+- **Inter-VLAN Routing Logic**  
+  - Router-on-a-stick style routing via OpenFlow rules  
+  - IP prefix-based routing decisions  
+  - NAT masquerading support (optional extension)  
+  - Access Control Lists (ACL) enforcement
+
+**Example folder structure (suggested):**
+
+```
+ryu_controller/
+├── app/
+│   ├── vlan_manager.py
+│   ├── flow_manager.py
+│   ├── topology.py
+│   ├── packet_handler.py
+│   ├── inter_vlan_router.py
+│   └── qos_manager.py
+├── utils/
+│   ├── logger.py
+│   └── constants.py
+├── topologies/
+│   └── example_topo.py
+└── main.py               # ryu-manager entry point
 ```
 
+#### 2. Mininet Topology Scripts
 
+Python scripts that define reproducible, parameterized network topologies.
 
+**Features supported:**
 
+- Multi-VLAN environments (VLAN 10, 20, 30, …)
+- Hybrid switch types (OVS + user-space switches)
+- Host placement per VLAN with configurable IP subnets
+- Link parameter control (bandwidth, delay, loss, max queue size)
+- Automatic performance monitoring hooks (iperf, bwm-ng, custom collectors)
+- Support for tree, linear, fat-tree, and custom topologies
 
+**Example usage:**
 
+```python
+from mininet.net import Mininet
+from mininet.node import OVSSwitch, Controller, RemoteController
+from mininet.cli import CLI
+from mininet.log import setLogLevel
 
+net = Mininet(
+    switch=OVSSwitch,
+    controller=lambda name: RemoteController(name, ip='127.0.0.1', port=6653),
+    autoStaticArp=True
+)
 
+# ... define hosts, switches, VLANs, links ...
 
+net.start()
+CLI(net)
+net.stop()
+```
 
+#### 3. Inter-VLAN Routing Configuration
 
+Implemented purely via OpenFlow rules (no traditional software router needed).
 
+**Core mechanisms:**
 
+- **Flow-based routing decisions**  
+  → Match: VLAN tag + destination IP prefix  
+  → Action: rewrite VLAN tag + output to correct port
 
+- **VLAN tagging / untagging**  
+  → Access ports: push/pop VLAN tag on ingress/egress  
+  → Trunk ports: preserve VLAN tags
 
+- **Policy-based forwarding**  
+  → ACL-style rules (source IP, protocol, port ranges)  
+  → Time-based or traffic-volume-based policies (advanced)
 
+- **QoS implementation**  
+  → Queue configuration on OVS ports  
+  → DSCP → queue mapping  
+  → Rate limiting per VLAN or per host  
+  → Priority queuing for VoIP / real-time traffic
 
+**Typical flow patterns installed:**
 
+1. ARP request/reply flooding within same VLAN  
+2. Inter-VLAN unicast routing (rewrite dst MAC + VLAN tag)  
+3. Broadcast/multicast containment per VLAN  
+4. Drop rules for unauthorized traffic  
+5. Meter entries for bandwidth limiting
+---
 
+### Optional enhancements you might consider adding later
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Architecture diagram (using draw.io / excalidraw / mermaid)
+- Sample flow table output (`ovs-ofctl dump-flows`)
+- Screenshot of Mininet CLI + Wireshark capture
+- Performance comparison table (e.g. latency / throughput with vs without routing)
 
 ---
-## Top Resources For SDN 
+## 🚀 Getting Started
+### Prerequisites
+```bash
+# System Requirements
+- Ubuntu 20.04 LTS or later
+- Python 3.8+
+- 4GB RAM minimum
+- 10GB free disk space
+```
+### Required Packages
+```
+sudo apt-get update
+sudo apt-get install -y git python3-pip openvswitch-switch
+```
+---
+## Installation
+1. **Clone the Repository**
+```bash
+git clone https://github.com/M-Amin-Wolverine/IRIB-University-Telecommunications-Networks-Final-Project.git
+cd IRIB-University-Telecommunications-Networks-Final-Project
+```
+2. **Install Mininet**
+```bash
+# Option A: Source Installation (Recommended)
+git clone https://github.com/mininet/mininet.git
+cd mininet
+./util/install.sh -a
+```
+
+### Option B: Package Installation
+```
+sudo apt-get install mininet
+```
+3. **Install Ryu Controller**
+```bash
+# Using pip
+pip3 install ryu
+
+# Or from source
+git clone https://github.com/faucetsdn/ryu.git
+cd ryu
+pip3 install .
+```
+4. **Verify Installation**
+```bash
+# Test Mininet
+sudo mn --test pingall
+
+# Test Ryu
+ryu-manager --version
+```
+
+---
+## Top Resources For Learn almost everything about SDN 
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome) [![Build Status](https://travis-ci.org/M-Amin-Wolverine/IRIB-University-Telecommunications-Networks-Final-Project.svg?branch=master)](https://travis-ci.org/M-Amin-Wolverine/IRIB-University-Telecommunications-Networks-Final-Project/)
 
 An awesome list about Software Defined Networks (SDN)
