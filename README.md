@@ -187,10 +187,10 @@ The table below summarizes the main cases, followed by step-by-step explanations
 
 | Scenario          | Source          | Destination       | Type              | Path / Mechanism                              |
 |-------------------|-----------------|-------------------|-------------------|-----------------------------------------------|
-| Intra-VLAN L2     | h1 (10.0.10.1)  | h2 (10.0.10.2)    | Ethernet          | Switch 1 (pure L2 switching)                  |
-| Inter-VLAN L3     | h1 (10.0.10.1)  | h3 (10.0.20.1)    | IP                | Switch 1 → Controller → Switch 3              |
-| Gateway Ping      | h1              | 10.0.10.254       | ICMP              | Switch 1 → Controller (ARP proxy + ICMP reply)|
-| Cross-VLAN ARP    | h1              | 10.0.20.254       | ARP               | Switch 1 → Controller (proxy reply)           |
+| Intra-VLAN L2     | h1 (10.10.10.1)  | h2 (10.20.10.2)    | Ethernet          | Switch 1 (pure L2 switching)                  |
+| Inter-VLAN L3     | h1 (10.10.10.1)  | h3 (10.20.20.1)    | IP                | Switch 1 → Controller → Switch 3              |
+| Gateway Ping      | h1              | 10.10.10.254       | ICMP              | Switch 1 → Controller (ARP proxy + ICMP reply)|
+| Cross-VLAN ARP    | h1              | 10.20.20.254       | ARP               | Switch 1 → Controller (proxy reply)           |
 
 ### 1. Intra-VLAN L2 Switching (Same VLAN – No Controller Involvement After Learning)
 
