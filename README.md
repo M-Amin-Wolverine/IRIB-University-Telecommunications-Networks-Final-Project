@@ -599,7 +599,6 @@ pip3 install matplotlib numpy seaborn
 
 An awesome list about Software Defined Networks (SDN)
 
-  - [Awesome SDN](#awesome-sdn)
   - [Introduction](#introduction)
   - [Network Operating System](#network-operating-system)
   - [Install Environment](#install-environment)
