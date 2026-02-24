@@ -1,0 +1,26 @@
+amin@zeynoth-z500:~$ sudo vtysh
+
+Hello, this is FRRouting (version 10.4.1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+zeynoth-z500# show ip route
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route,  - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K  0.0.0.0/0 [0/106] via 192.168.47.80, ens33, src 192.168.47.186, weight 1, 00:07:54
+K>* 0.0.0.0/0 [0/105] via 192.168.30.2, ens34, src 192.168.30.129, weight 1, 04:07:30
+C>* 192.168.30.0/24 [0/105] is directly connected, ens34, weight 1, 04:07:30
+L>* 192.168.30.129/32 is directly connected, ens34, weight 1, 04:07:30
+C>* 192.168.47.0/24 [0/106] is directly connected, ens33, weight 1, 00:07:56
+L>* 192.168.47.186/32 is directly connected, ens33, weight 1, 00:07:56
+C>* 192.168.152.0/24 [0/102] is directly connected, ens33, weight 1, 10:31:14
+C>* 192.168.158.0/24 [0/102] is directly connected, ens33, weight 1, 05:04:10
+
+zeynoth-z500# show ip ospf neighbor
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
