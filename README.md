@@ -815,6 +815,119 @@ It is designed to run on any processors. The first supported CPU was Intel x86 a
 - [VXLAN L3应用EVPN，呈现完整overlay网络](https://www.sdnlab.com/19879.html)
 
 ---
+# 🤝 Contributing
+
+Contributions to improve the project are welcome! Please follow these steps:
+
+```markdown
+
+1. **Create a new branch** for your feature or fix  
+   ```bash
+   git checkout -b feature/AmazingFeature
+   # or
+   git checkout -b fix/bug-login-validation
+   ```
+
+2. **Make your changes** and stage them  
+   ```bash
+   git add .
+   # or more selectively:
+   # git add src/components/Button.py tests/test_button.py
+   ```
+
+3. **Commit your changes** with a clear message  
+   ```bash
+   git commit -m "Add AmazingFeature: implement real-time packet visualization"
+   # Good examples:
+   # git commit -m "fix: resolve division by zero in bandwidth calculator"
+   # git commit -m "docs: update installation instructions for macOS"
+   ```
+
+4. **Push your branch** to GitHub  
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+
+5. **Open a Pull Request**  
+   - Go to your repository on GitHub  
+   - You should see a yellow banner suggesting to open a PR → click **Compare & pull request**  
+   - Fill in a meaningful title and description  
+   - Link any related issues (e.g. `Closes #45`)  
+   - Request review from `@M-Amin-Wolverine` or other team members
+
+---
+
+## Contribution Guidelines
+
+We welcome contributions of all kinds — bug fixes, new features, documentation, tests, examples, etc.
+
+To maintain high code quality, please follow these guidelines:
+
+- **Code Style**  
+  - Follow **PEP 8** for all Python code  
+  - Use `black` + `isort` for automatic formatting (recommended)  
+  - Maximum line length: 88 characters (black default)
+
+- **Documentation**  
+  - Every public function, class, and method **must** have a clear docstring (Google or NumPy style preferred)  
+  - Include type hints wherever possible (use `typing` or `from __future__ import annotations`)
+
+- **Testing**  
+  - Add or update **unit tests** for new/changed logic (preferably using `pytest`)  
+  - Aim for meaningful coverage on core logic (visualization, calculations, data parsing)
+
+- **Documentation & README**  
+  - Update `README.md` if you add/remove features, change installation steps, or add new screenshots  
+  - Keep example code blocks runnable when possible
+
+- **Commit Messages**  
+  Use conventional commit style (optional but appreciated):  
+  ```
+  feat: add latency heatmap visualization
+  fix: correct jitter calculation formula
+  docs: improve CONTRIBUTING.md examples
+  refactor: extract packet parser to separate module
+  ```
+
+---
+
+### 📄 License
+
+This project is licensed under the **MIT License**.  
+See the [`LICENSE`](LICENSE.md) file for the full text.
+
+---
+
+### 👥 Core Team
+
+- **M. Amin Khodadadi** — Project Lead & Main Developer  
+- **IRIB University** — Faculty of Telecommunications (Student Project)
+
+---
+
+### 📞 Contact & Support
+
+- **GitHub Repository**:  
+  https://github.com/M-Amin-Wolverine/IRIB-University-Telecommunications-Networks-Final-Project
+
+- **Issues**:  
+  [Report a bug or suggest a feature →](https://github.com/M-Amin-Wolverine/IRIB-University-Telecommunications-Networks-Final-Project/issues/new)
+
+- **Email**:  
+  amin.khodadadi1380@gmail.com
+
+---
+
+Thank you for helping make this project better! 🚀
+
+---
+<div align="center">
+⭐ Star this repository if you find it useful!
+IRIB University - Faculty of Telecommunications Engineering
+*Academic Year 2026-2027*
+
+</div>
+
 ### Project conceived, developed, and maintained by Mohammad Amin Khodadadi
 
 ### Last major update: Feb.2026
